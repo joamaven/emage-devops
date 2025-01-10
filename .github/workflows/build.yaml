@@ -1,14 +1,11 @@
 name: Build and push docker image
-
 on:
   push:
     branches:
       - 'main'
-      
 env:
   IMAGE_NAME: note-app
   IMAGE_TAG: latest
-
 jobs:
   docker:
     runs-on: [self-hosted]
@@ -32,6 +29,6 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: devops-projects/docker_cicd_github_action/.
+          context: ./docker_cicd_github_action    # Changed this line
           push: false
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_NAME }}
